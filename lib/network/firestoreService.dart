@@ -20,9 +20,9 @@ class fireStoreServices extends BaseFireStoreService {
 
   @override
   Future updateDataToFireStore(
-      Map<String, dynamic> data, String coolectionName, String docName) async{
+      Map<String, dynamic> data, String coolectionName, String docName) async {
     try {
-     await _firestoreInstance
+      await _firestoreInstance
           .collection(coolectionName)
           .doc(docName)
           .update(data);
@@ -32,15 +32,16 @@ class fireStoreServices extends BaseFireStoreService {
   }
 
   @override
-  Future getUserdatafromFirestore(String collectionname, String docname) async {
-    // TODO: implement getUserdatafromFirestore
-    try {
-      final userData = await _firestoreInstance
-          .collection(collectionname)
-          .doc(docname)
-          .get();
-    } catch (e) {
-      throw Exception(e.toString());
-    }
+Future<Map<String, dynamic>> getUserdatafromFirestore(String collectionname, String docname) async {
+  try {
+    final userData = await _firestoreInstance
+        .collection(collectionname)
+        .doc(docname)
+        .get();
+    print("rrrrrrrrr${userData.data()}"); // Optional: print the data for debugging
+    return userData.data() as Map<String, dynamic>;
+  } catch (e) {
+    throw Exception(e.toString());
   }
+}
 }

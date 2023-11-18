@@ -18,6 +18,8 @@ class AuthProvider extends ChangeNotifier {
     setLoader(true);
     try {
       _usercredental = await auth.loginUserwithFirebase(email, password);
+      // Fetch user data from Firestore and store it
+      await fetchUserData(_usercredental!.user!.uid);
       setLoader(false);
       return _usercredental;
     } catch (e) {
@@ -26,6 +28,17 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> fetchUserData(String uid) async {
+    try {
+      _userdata = await _services.getUserdatafromFirestore("user", uid);
+      print("User Data: $_userdata");
+      print("User Dataaaaaaaaaa: $userData");
+      notifyListeners();
+    } catch (e) {
+      print("Error fetching user data: $e");
+      throw Exception("Error fetching user data");
+    }
+  }
   Future<UserCredential?> signUpUserWithFirebase(
       String email, String password, String name) async {
     var isSucess = false;
@@ -58,7 +71,17 @@ class AuthProvider extends ChangeNotifier {
     }
     return value;
   }
-
+Future<void> logout() async {
+    try {
+       auth.LogOutUser();
+      _usercredental = null;
+      _userdata = {};
+      notifyListeners();
+    } catch (e) {
+      print("Error during logout: $e");
+      throw Exception("Error during logout");
+    }
+  }
   setLoader(bool loader) {
     _isLoading = loader;
     notifyListeners();

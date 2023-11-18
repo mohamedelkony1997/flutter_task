@@ -5,11 +5,8 @@ import 'package:flutter_task/Screens/LoginScreen.dart';
 
 import 'package:responsive_framework/responsive_framework.dart';
 void main() async {
-   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-
-
-  );
+ WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); 
   runApp( ProviderScope(child: MyApp()));
 }
 

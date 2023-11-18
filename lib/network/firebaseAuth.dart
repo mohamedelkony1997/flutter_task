@@ -4,7 +4,7 @@ import 'package:flutter_task/network/abstract/baseFirebaseServices.dart';
 class fireBaseAuth extends BaseFirebaseServices {
   FirebaseAuth auth = FirebaseAuth.instance;
   @override
-  void signOutUser() {
+  void LogOutUser() {
     auth.signOut();
   }
 

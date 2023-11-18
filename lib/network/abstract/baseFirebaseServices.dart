@@ -5,5 +5,6 @@ abstract class BaseFirebaseServices {
   Future<UserCredential> signUpUserwithFirebase(
       String name, String email, String password);
   Future<UserCredential> loginUserwithFirebase(String email, String password);
-  void signOutUser();
+  void LogOutUser();
+  
 }

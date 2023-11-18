@@ -14,6 +14,7 @@ class Login extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef widgetRef) {
     final authNotifer = widgetRef.watch(authProvider);
+    
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: true,
@@ -68,8 +69,8 @@ class Login extends ConsumerWidget {
                   ),
                   TextFormField(
                     controller:
-                        passwordController, // Use passwordController here
-                    obscureText: true, // Set obscureText to true for password
+                        passwordController, 
+                    obscureText: true, 
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15.0),
@@ -133,6 +134,7 @@ class Login extends ConsumerWidget {
                             MaterialStateProperty.all(Colors.transparent),
                       ),
                       onPressed: () {
+                      
                         authNotifer
                             .loginUserWuthFirebase(
                                 emailController.text, passwordController.text)
